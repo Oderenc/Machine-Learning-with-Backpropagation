@@ -205,12 +205,11 @@ neuronCache get_neuron_activations(int current_layer, int current_neuron,  const
 }
 
 
-int main() {
-    auto linear_equation = [](double x) {return (2.0*x/5.0) + 4;};
-    trainingExamples training_data;
-    int data_length = 100;
-
+void run(trainingExamples training_data, int data_length) {
+    /*
     //create training data
+    auto linear_equation = [](double x) {return (2.0*x/5.0) + 4;};
+    data_length = 50
     for (int i=0; i<data_length; i++){
         std::uniform_real_distribution<double> dist_x(-20.0, 20.0);
         std::uniform_real_distribution<double> dist_randomness(-5.0, 5.0);
@@ -220,6 +219,7 @@ int main() {
         training_data.x_coords.push_back(x);
         training_data.y_coords.push_back(y);
     }
+    */
 
     neuralNetwork network;
     network.neurons_per_layer = {1, 1};
@@ -346,6 +346,16 @@ int main() {
     }
 
     std::cout << "MSE: " << mean_squared_error << "\n";
+}
+
+int main() {
+    trainingExamples training_data;
+    int data_length = 4;
+
+    //Replace with your own training data to regress to
+    training_data.x_coords = {1, 2, 3, 4};
+    training_data.y_coords = {2, 5, 6, 8}; //example here is y = 2x
+    run(training_data, data_length);
 
     return 0;
 }
